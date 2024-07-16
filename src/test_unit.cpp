@@ -1,7 +1,9 @@
 #include "common.h"
 #include "smart_allocator.h"
 
-int main() { 
-  smart_allocator<int> ptr(5, sizeof(int));
-  std::cout << ptr.get_value() << std::endl;
+#define SIZE 100
+int main() {
+  smart_allocator<int> ptr(new int[SIZE]);
+  ptr.get_ptr()[10] = 10;
+  std::cout << ptr.get_ptr()[10] << std::endl;
 }
