@@ -6,15 +6,14 @@ OBJ = $(SRC:src/%.cpp=obj/%.o)
 DEPS = $(wildcard src/*.h)
 
 $(EXEC): $(OBJ)
-	$(CCX) -shared -o $@.so $^
 	$(CCX) $(CXFLAGS) -o $@ $^
 
-obj/%.o: src/%.c $(DEPS)
+obj/%.o: src/%.cpp $(DEPS)
 	mkdir -p obj
 	$(CCX) $(CXFLAGS) -o $@ -c $<
 
 clean:
-	rm -f $(EXEC) $(EXEC).so
+	rm -f $(EXEC) 
 	rm -rf obj
 
 format:
@@ -22,4 +21,7 @@ format:
 		clang-format -i $$file; \
 	done \
 
-.phony: clean format
+run : 
+	./$(EXEC)
+
+.phony: clean format run
