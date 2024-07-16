@@ -8,7 +8,11 @@ private:
   T *ptr;
 
 public:
-  smart_allocator(size_t size);
-  ~smart_allocator();
-  inline T *get() { return ptr; };
+  smart_allocator(T value, std::size_t size) {
+    ptr = (T *)heap.heap_alloc(size);
+    *ptr = value;
+  };
+  ~smart_allocator(){};
+  inline T *get_ptr() const { return ptr; };
+  inline T get_value() const { return *ptr; };
 };

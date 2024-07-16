@@ -1,9 +1,12 @@
 #include "heap.h"
-#include <cstddef>
 
-void heap::allocate_memory(size_t size) {
+heap_container heap;
+
+void *heap_container::heap_alloc(size_t size) {
   // TODO add checking free memory
 
-  ptrdiff_t address = dynamic_cast<ptrdiff_t>(addr) + actual_size;
-  add_size(size);
+  void *addr = get_new_address();
+  add_heap_size(size);
+
+  return addr;
 }
