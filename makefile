@@ -22,6 +22,8 @@ format:
 	done \
 
 run : 
+	$(MAKE) clean
+	$(MAKE)
 	./$(EXEC)
 
 .phony: clean format run
