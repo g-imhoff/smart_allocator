@@ -9,5 +9,5 @@ int main() {
   std::cout << ptr.get_ptr()[10] << std::endl;
 
   heap_node node(sizeof(int), NULL);
-  std::cout << node.get_size() << std::endl;
+  std::cout << sizeof(heap_node) << std::endl;
 }
