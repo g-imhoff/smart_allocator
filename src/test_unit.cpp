@@ -3,34 +3,6 @@
 
 #define SIZE 3
 
-void test_alloc_in_free() {
-  smart_allocator<int> int_ptr(sizeof(int) * SIZE);
-  smart_allocator<char> char_ptr(sizeof(char) * SIZE);
-  if (smart_allocator<int> char_ptr2(sizeof(int) * SIZE * 2);
-      char_ptr2.get_ptr()) {
-    for (int i = 0; i < SIZE * 2; i++) {
-      char_ptr2.get_ptr()[i] = rand();
-    }
-
-    std::cout << char_ptr2.get_ptr()[11] << std::endl;
-  }
-  smart_allocator<char> char_ptr2(sizeof(char) * SIZE * 2);
-  heap.get_head()->print_node();
-}
-
-void test_auto_free() {
-  if (smart_allocator<int> ptr(sizeof(int) * SIZE); ptr.get_ptr()) {
-    for (int i = 0; i < SIZE; i++) {
-      ptr.get_ptr()[i] = rand();
-    }
-
-    std::cout << ptr.get_ptr()[11] << std::endl;
-  }
-
-  smart_allocator<char> ptr(sizeof(char) * SIZE);
-  heap.get_head()->print_node();
-}
-
 void heap_info() {
   std::cout << std::endl;
   std::cout << "initial address from the heap : " << heap.get_addr()
@@ -49,10 +21,40 @@ void heap_info() {
   std::cout << std::endl;
 }
 
+void test_alloc_in_free() {
+  heap_info();
+
+  smart_allocator<int> int_ptr(sizeof(int) * SIZE);
+  smart_allocator<char> char_ptr(sizeof(char) * SIZE);
+  if (smart_allocator<int> char_ptr2(sizeof(int) * SIZE * 2);
+      char_ptr2.get_ptr()) {
+    for (int i = 0; i < SIZE * 2; i++) {
+      char_ptr2.get_ptr()[i] = rand();
+    }
+
+    std::cout << char_ptr2.get_ptr()[11] << std::endl;
+  }
+  smart_allocator<char> char_ptr2(sizeof(char) * SIZE * 2);
+  heap.get_head()->print_node();
+
+  heap_info();
+}
+
+void test_auto_free() {
+  if (smart_allocator<int> ptr(sizeof(int) * SIZE); ptr.get_ptr()) {
+    for (int i = 0; i < SIZE; i++) {
+      ptr.get_ptr()[i] = rand();
+    }
+
+    std::cout << ptr.get_ptr()[11] << std::endl;
+  }
+
+  smart_allocator<char> ptr(sizeof(char) * SIZE);
+  heap.get_head()->print_node();
+}
+
 int main() {
-  heap_info();
   test_alloc_in_free();
-  heap_info();
 
   return 0;
 }

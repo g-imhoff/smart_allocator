@@ -74,4 +74,5 @@ void heap_container::check_if_still_contains_free_memory() {
   }
 
   heap.set_contains_free_memory(false);
+  heap.set_highest_free_memory(0);
 }
