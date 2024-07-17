@@ -28,7 +28,7 @@ private:
   std::size_t _actual_size = 0;
 
   bool _contains_free_memory = false;
-  std::size_t _highest_free_memory = SIZE_MAX;
+  std::size_t _highest_free_memory = 0;
 
   heap_node *_head = NULL;
 
@@ -70,6 +70,33 @@ public:
    * @return return the head of the heap node
    */
   inline heap_node *get_head() { return _head; }
+
+  /**
+   * Used to get the maximum size free in the heap
+   *
+   * @return return the maximum size free in the heap
+   */
+  inline std::size_t get_highest_free_memory() { return _highest_free_memory; }
+
+  /**
+   * Used to know if there is free memory in the heap
+   *
+   * @return return the boolean if there is free memory in the heap
+   */
+  inline bool get_contains_free_memory() { return _contains_free_memory; }
+
+  /**
+   * Used to set the contains free memory
+   *
+   * @param contains_free_memory used to set the contains free memory
+   */
+  inline void set_contains_free_memory(bool contains_free_memory) {
+    _contains_free_memory = contains_free_memory;
+  }
+
+  inline void set_highest_free_memory(std::size_t highest_free_memory) {
+    _highest_free_memory = highest_free_memory;
+  }
 };
 
 // Declaration of the heap

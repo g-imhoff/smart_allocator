@@ -4,7 +4,11 @@
 heap_container heap;
 
 void *heap_container::heap_alloc(size_t size) {
-  // TODO: add checking free memory
+  if (heap.get_contains_free_memory()) {
+    void *addr = heap._head->find_lowest_higher_free(size);
+    
+    return addr;
+  }
 
   // Create the node
   heap_node *node = static_cast<heap_node *>(get_new_address());
@@ -28,6 +32,11 @@ void *heap_container::heap_alloc(size_t size) {
 void heap_container::heap_free(void *addr) {
   heap_node *tmp = _head;
 
+  if (tmp == NULL) {
+    std::cerr << "Error: address not found" << std::endl;
+    throw std::runtime_error("Error: address not found");
+  }
+
   while (tmp) {
     if (tmp->get_addr() == addr) {
       tmp->set_free(true);
@@ -35,5 +44,11 @@ void heap_container::heap_free(void *addr) {
     }
 
     tmp = tmp->get_next();
+  }
+
+  heap.set_contains_free_memory(true);
+
+  if (heap.get_highest_free_memory() < tmp->get_size()) {
+    heap.set_highest_free_memory(tmp->get_size());
   }
 }
