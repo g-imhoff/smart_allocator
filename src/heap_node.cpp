@@ -23,13 +23,15 @@ void heap_node::push_back(heap_node *node) {
 
 void heap_node::print_node() {
   heap_node *tmp = this;
+  int i = 0;
 
   while (tmp) {
-    std::cout << "Node: " << tmp << std::endl;
+    std::cout << "Node: " << i << std::endl;
     std::cout << "Size: " << tmp->_size << std::endl;
     std::cout << "Addr: " << tmp->_addr << std::endl;
-    std::cout << "Free: " << tmp->_free << std::endl;
-
+    std::cout << "Free: " << (tmp->_free == true ? "true" : "false")
+              << std::endl;
     tmp = tmp->_next;
+    i++;
   }
 }

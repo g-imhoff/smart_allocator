@@ -24,3 +24,16 @@ void *heap_container::heap_alloc(size_t size) {
 
   return addr;
 }
+
+void heap_container::heap_free(void *addr) {
+  heap_node *tmp = _head;
+
+  while (tmp) {
+    if (tmp->get_addr() == addr) {
+      tmp->set_free(true);
+      break;
+    }
+
+    tmp = tmp->get_next();
+  }
+}

@@ -40,9 +40,44 @@ public:
    */
   inline std::size_t get_size() { return _size; }
 
+  /**
+   * Initialization of the node
+   *
+   * @param addr where the content is set
+   * @param size of the content
+   */
   void init_node(void *addr, std::size_t size);
 
+  /**
+   * Used to push a node to the end of the list
+   *
+   * @param node the node to push at the end of the list
+   */
   void push_back(heap_node *node);
 
+  /**
+   * Used to print the whole list of nodes
+   */
   void print_node();
+
+  /**
+   * Get the address of the node
+   *
+   * @return return the address of the node
+   */
+  inline void *get_addr() { return _addr; }
+
+  /**
+   * Used to set the free value of the node
+   *
+   * @param eval the value to set
+   */
+  inline void set_free(bool eval) { _free = eval; }
+
+  /**
+   * Used to get the next value of this node
+   *
+   * @return return the next value of this node
+   */
+  inline heap_node *get_next() { return _next; }
 };

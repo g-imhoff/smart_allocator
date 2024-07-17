@@ -35,7 +35,10 @@ public:
   /**
    * Destructor of the smart allocator
    */
-  ~smart_allocator() {}
+  ~smart_allocator() {
+    heap.heap_free(_ptr);
+    _ptr = NULL;
+  }
 
   /**
    * Used to get the pointer to the memory allocated
