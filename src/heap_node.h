@@ -31,7 +31,8 @@ public:
    * @param size used to set the size of all the values stored in the addr
    * @param addr used to set the address of the node
    */
-  heap_node(std::size_t size, void *addr) : _size(size), _addr(addr) {}
+  heap_node(std::size_t size, void *addr)
+      : _size(size + SEP_BYTES), _addr(addr) {}
 
   /**
    * Used to get the size of the node
@@ -72,8 +73,8 @@ public:
    *
    * @param eval the value to set
    */
-  inline void set_free(bool eval) { _free = eval; }
-
+  void set_free(bool eval);
+  inline bool get_free() { return _free; }
   /**
    * Used to get the next value of this node
    *

@@ -4,7 +4,6 @@
 #include "heap_node.h"
 
 #define HEAP_MAX_SIZE 64000000
-#define SEP_BYTES 1
 
 /**
  * Class used to manage the heap
@@ -18,6 +17,8 @@
  * @param _highest_free_memory used to store the highest free memory
  * @param _head used to store a double linked list of heap nodes
  */
+
+constexpr std::size_t HEAP_NODE_SIZE = sizeof(heap_node) + SEP_BYTES;
 
 class heap_container {
 private:
@@ -97,6 +98,12 @@ public:
   inline void set_highest_free_memory(std::size_t highest_free_memory) {
     _highest_free_memory = highest_free_memory;
   }
+
+  inline void *get_addr() { return _heap_addr; }
+
+  inline std::size_t get_max() { return _max; }
+  inline std::size_t get_actual_size() { return _actual_size; }
+  void check_if_still_contains_free_memory();
 };
 
 // Declaration of the heap

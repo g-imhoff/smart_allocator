@@ -1,8 +1,9 @@
 #include "heap_node.h"
+#include "heap.h"
 
 void heap_node::init_node(void *addr, std::size_t size) {
   _addr = addr;
-  _size = size;
+  _size = size + SEP_BYTES;
 }
 
 void heap_node::push_back(heap_node *node) {
@@ -28,7 +29,9 @@ void heap_node::print_node() {
   std::cout << "----------------------------------" << std::endl;
   while (tmp) {
     std::cout << "Node: " << i << std::endl;
-    std::cout << "Size: " << tmp->_size << std::endl;
+    std::cout << "The node size is : " << HEAP_NODE_SIZE << std::endl;
+    std::cout << "Size: " << tmp->_size << " contains 1 separation bytes"
+              << std::endl;
     std::cout << "Addr: " << tmp->_addr << std::endl;
     std::cout << "Free: " << (tmp->_free == true ? "true" : "false")
               << std::endl;
@@ -72,4 +75,12 @@ heap_node *heap_node::get_node(void *addr) {
   }
 
   return NULL;
+}
+
+void heap_node::set_free(bool eval) {
+  _free = eval;
+
+  if (eval == false) {
+    heap.check_if_still_contains_free_memory();
+  }
 }

@@ -7,9 +7,9 @@ void *heap_container::heap_alloc(size_t size) {
   if (heap.get_contains_free_memory()) {
     void *addr = heap._head->find_lowest_higher_free(size);
     if (heap_node *node = heap._head->get_node(addr)) {
+      // TODO: add some possibility of fragmenting the memory
       node->set_free(false);
 
-      // TODO: add some possibility of fragmenting the memory
     } else {
       std::cerr << "Error: address not found" << std::endl;
       throw std::runtime_error("Error: address not found");
@@ -60,4 +60,18 @@ void heap_container::heap_free(void *addr) {
   if (heap.get_highest_free_memory() < tmp->get_size()) {
     heap.set_highest_free_memory(tmp->get_size());
   }
+}
+
+void heap_container::check_if_still_contains_free_memory() {
+  heap_node *tmp = _head;
+
+  while (tmp) {
+    if (tmp->get_free()) {
+      return;
+    }
+
+    tmp = tmp->get_next();
+  }
+
+  heap.set_contains_free_memory(false);
 }

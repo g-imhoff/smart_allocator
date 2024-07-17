@@ -1,7 +1,7 @@
 #include "common.h"
 #include "smart_allocator.h"
 
-#define SIZE 100
+#define SIZE 3
 
 void test_alloc_in_free() {
   smart_allocator<int> int_ptr(sizeof(int) * SIZE);
@@ -14,7 +14,7 @@ void test_alloc_in_free() {
 
     std::cout << char_ptr2.get_ptr()[11] << std::endl;
   }
-  smart_allocator<char> char_ptr3(sizeof(char) * SIZE);
+  smart_allocator<char> char_ptr2(sizeof(char) * SIZE * 2);
   heap.get_head()->print_node();
 }
 
@@ -31,8 +31,28 @@ void test_auto_free() {
   heap.get_head()->print_node();
 }
 
+void heap_info() {
+  std::cout << std::endl;
+  std::cout << "initial address from the heap : " << heap.get_addr()
+            << std::endl;
+
+  std::cout << "max size of the heap : " << heap.get_max() << std::endl;
+  std::cout << "actual size of the heap : " << heap.get_actual_size()
+            << std::endl;
+
+  std::cout << "contains free memory : "
+            << (heap.get_contains_free_memory() ? "true" : "false")
+            << std::endl;
+
+  std::cout << "highest free memory : " << heap.get_highest_free_memory()
+            << std::endl;
+  std::cout << std::endl;
+}
+
 int main() {
+  heap_info();
   test_alloc_in_free();
+  heap_info();
 
   return 0;
 }
