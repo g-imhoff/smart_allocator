@@ -18,8 +18,12 @@ private:
   T *_ptr;
 
 public:
-  // TODO: finish this
-  // smart_allocator(std::size_t size) { _ptr = (T *)heap.heap_alloc(size); };
+  /**
+   * Constructor of the smart allocator
+   *
+   * @param size used to set the size of the memory allocated
+   */
+  smart_allocator(std::size_t size) { _ptr = (T *)heap.heap_alloc(size); };
 
   /**
    * Constructor of the smart allocator
@@ -39,12 +43,4 @@ public:
    * @return return the pointer to the memory allocated
    */
   inline T *get_ptr() const { return _ptr; }
-
-  /**
-   * Overload the new operator to make smart_allocator<int> l(new int[10]) type
-   * of thing work
-   *
-   * @return return the pointer to the memory allocated
-   */
-  void *operator new(std::size_t size) { return heap.heap_alloc(size); }
 };

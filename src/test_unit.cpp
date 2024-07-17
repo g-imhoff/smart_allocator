@@ -4,10 +4,11 @@
 
 #define SIZE 100
 int main() {
-  smart_allocator<int> ptr(new int[SIZE]);
-  ptr.get_ptr()[10] = 10;
-  std::cout << ptr.get_ptr()[10] << std::endl;
+  smart_allocator<int> ptr(sizeof(int) * SIZE);
 
-  heap_node node(sizeof(int), NULL);
-  std::cout << sizeof(heap_node) << std::endl;
+  for (int i = 0; i < SIZE; i++) {
+    ptr.get_ptr()[i] = rand();
+  }
+
+  heap.get_head()->print_node();
 }

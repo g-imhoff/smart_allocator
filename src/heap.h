@@ -63,6 +63,13 @@ public:
    * @return return the new address
    */
   inline void *get_new_address() { return _heap_addr + _actual_size; }
+
+  /**
+   * Used to get the head of the heap node
+   *
+   * @return return the head of the heap node
+   */
+  inline heap_node *get_head() { return _head; }
 };
 
 // Declaration of the heap

@@ -39,4 +39,10 @@ public:
    * @return return the size of the node
    */
   inline std::size_t get_size() { return _size; }
+
+  void init_node(void *addr, std::size_t size);
+
+  void push_back(heap_node *node);
+
+  void print_node();
 };
