@@ -1,4 +1,5 @@
 #include "heap_node.h"
+#include "common.h"
 #include "heap.h"
 
 void heap_node::init_node(void *addr, std::size_t size) {
@@ -52,7 +53,8 @@ void *heap_node::find_lowest_higher_free(std::size_t size) {
   std::size_t actual_lowest = SIZE_MAX;
 
   while (tmp) {
-    if (tmp->_free && tmp->_size >= size && tmp->_size < actual_lowest) {
+    if (tmp->_free && tmp->_size > size + sizeof(heap_node) + 3 * SEP_BYTES &&
+        tmp->_size < actual_lowest) {
       actual_lowest = tmp->_size;
       addr = tmp->_addr;
     }
@@ -84,3 +86,5 @@ void heap_node::set_free(bool eval) {
     heap.check_if_still_contains_free_memory();
   }
 }
+
+void heap_node::split_node(std::size_t size) {}

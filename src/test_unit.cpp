@@ -1,7 +1,7 @@
 #include "common.h"
 #include "smart_allocator.h"
 
-#define SIZE 3
+#define SIZE 100
 
 void heap_info() {
   std::cout << std::endl;
@@ -26,15 +26,14 @@ void test_alloc_in_free() {
 
   smart_allocator<int> int_ptr(sizeof(int) * SIZE);
   smart_allocator<char> char_ptr(sizeof(char) * SIZE);
-  if (smart_allocator<int> char_ptr2(sizeof(int) * SIZE * 2);
-      char_ptr2.get_ptr()) {
+  if (smart_allocator<int> char_ptr2(sizeof(int) * SIZE); char_ptr2.get_ptr()) {
     for (int i = 0; i < SIZE * 2; i++) {
       char_ptr2.get_ptr()[i] = rand();
     }
 
     std::cout << char_ptr2.get_ptr()[11] << std::endl;
   }
-  smart_allocator<char> char_ptr2(sizeof(char) * SIZE * 2);
+  smart_allocator<char> char_ptr2(sizeof(int) * SIZE - 42);
   heap.get_head()->print_node();
 
   heap_info();

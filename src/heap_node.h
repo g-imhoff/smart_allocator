@@ -84,4 +84,5 @@ public:
 
   void *find_lowest_higher_free(std::size_t size);
   heap_node *get_node(void *addr);
+  void split_node(std::size_t size);
 };
