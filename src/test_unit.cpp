@@ -4,9 +4,13 @@
 #define SIZE 100
 
 void heap_info() {
+  std::stringstream ss;
+  ss << heap.get_addr();
+  uintptr_t decimal_var = 0;
+  ss >> std::hex >> decimal_var;
   std::cout << std::endl;
-  std::cout << "initial address from the heap : " << heap.get_addr()
-            << std::endl;
+  std::cout << "initial address from the heap : " << heap.get_addr() << " -- "
+            << decimal_var << std::endl;
 
   std::cout << "max size of the heap : " << heap.get_max() << std::endl;
   std::cout << "actual size of the heap : " << heap.get_actual_size()
@@ -30,8 +34,6 @@ void test_alloc_in_free() {
     for (int i = 0; i < SIZE * 2; i++) {
       char_ptr2.get_ptr()[i] = rand();
     }
-
-    std::cout << char_ptr2.get_ptr()[11] << std::endl;
   }
   smart_allocator<char> char_ptr2(sizeof(int) * SIZE - 42);
   heap.get_head()->print_node();

@@ -18,7 +18,7 @@
  * @param _head used to store a double linked list of heap nodes
  */
 
-constexpr std::size_t HEAP_NODE_SIZE = sizeof(heap_node) + SEP_BYTES;
+constexpr std::size_t HEAP_NODE_SIZE = sizeof(heap_node);
 
 class heap_container {
 private:

@@ -9,10 +9,7 @@ void *heap_container::heap_alloc(size_t size) {
       (addr = heap._head->find_lowest_higher_free(size))) {
     if (heap_node *node = heap._head->get_node(addr)) {
       // TODO: add some possibility of fragmenting the memory
-      node->split_node(size);
-
-      node->set_free(false);
-
+      addr = node->split_node(size);
     } else {
       std::cerr << "Error: address not found" << std::endl;
       throw std::runtime_error("Error: address not found");
@@ -23,7 +20,7 @@ void *heap_container::heap_alloc(size_t size) {
 
   // Create the node
   heap_node *node = static_cast<heap_node *>(get_new_address());
-  add_heap_size(sizeof(heap_node));
+  add_heap_size(HEAP_NODE_SIZE);
 
   // Get the address needed
   addr = get_new_address();
