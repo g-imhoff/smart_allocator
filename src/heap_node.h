@@ -82,5 +82,5 @@ public:
   inline heap_node *get_next() { return _next; }
 
   void *find_lowest_higher_free(std::size_t size);
-  heap_node* get_node(void *addr);
+  heap_node *get_node(void *addr);
 };

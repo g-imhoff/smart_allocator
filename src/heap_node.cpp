@@ -59,3 +59,17 @@ void *heap_node::find_lowest_higher_free(std::size_t size) {
 
   return addr;
 }
+
+heap_node *heap_node::get_node(void *addr) {
+  heap_node *tmp = this;
+
+  while (tmp) {
+    if (tmp->_addr == addr) {
+      return tmp;
+    }
+
+    tmp = tmp->_next;
+  }
+
+  return NULL;
+}

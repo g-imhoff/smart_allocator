@@ -6,7 +6,13 @@ heap_container heap;
 void *heap_container::heap_alloc(size_t size) {
   if (heap.get_contains_free_memory()) {
     void *addr = heap._head->find_lowest_higher_free(size);
-    
+    if (heap_node* node = heap._head->get_node(addr)) {
+      node->set_free(false);
+    } else {
+      std::cerr << "Error: address not found" << std::endl;
+      throw std::runtime_error("Error: address not found");
+    }
+
     return addr;
   }
 
