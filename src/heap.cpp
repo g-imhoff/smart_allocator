@@ -57,6 +57,17 @@ void heap_container::heap_free(void *addr) {
     tmp = tmp->get_next();
   }
   // TODO: add some possibility of merging free memory
+  if (tmp == NULL) {
+    std::cerr << "Error: address not found" << std::endl;
+    throw std::runtime_error("Error: address not found");
+  }
+
+  if (tmp->get_prev() && tmp->get_prev()->get_free()) {
+    heap_node *prev = tmp->get_prev();
+    prev->merge_next();
+  } else if (tmp->get_next() && tmp->get_next()->get_free()) {
+    tmp->merge_next();
+  }
 
   heap.set_contains_free_memory(true);
 

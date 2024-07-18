@@ -122,3 +122,14 @@ void *heap_node::got_exactly_size_free(std::size_t size) {
 
   return NULL;
 }
+
+void heap_node::merge_next() {
+  heap_node *next = _next;
+
+  _size += next->_size + HEAP_NODE_SIZE;
+  _next = next->_next;
+
+  if (next->_next) {
+    next->_next->_previous = this;
+  }
+}
