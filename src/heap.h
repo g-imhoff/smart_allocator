@@ -55,7 +55,7 @@ public:
    *
    */
   inline void add_heap_size(std::size_t size) {
-    _actual_size = _actual_size + size + SEP_BYTES;
+    _actual_size = _actual_size + size;
   }
 
   /**

@@ -31,8 +31,7 @@ public:
    * @param size used to set the size of all the values stored in the addr
    * @param addr used to set the address of the node
    */
-  heap_node(std::size_t size, void *addr)
-      : _size(size + SEP_BYTES), _addr(addr) {}
+  heap_node(std::size_t size, void *addr) : _size(size), _addr(addr) {}
 
   /**
    * Used to get the size of the node

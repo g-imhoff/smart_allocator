@@ -4,7 +4,7 @@
 
 void heap_node::init_node(void *addr, std::size_t size) {
   _addr = addr;
-  _size = size + SEP_BYTES;
+  _size = size;
 }
 
 void heap_node::push_back(heap_node *node) {
@@ -35,10 +35,8 @@ void heap_node::print_node() {
     ss << tmp->_addr;
     ss >> std::hex >> decimal_var;
     std::cout << "Node: " << i << std::endl;
-    std::cout << "The node size is : " << HEAP_NODE_SIZE + SEP_BYTES
-              << std::endl;
-    std::cout << "Size: " << tmp->_size << " contains 1 separation bytes"
-              << std::endl;
+    std::cout << "The node size is : " << HEAP_NODE_SIZE << std::endl;
+    std::cout << "Size: " << tmp->_size <<  std::endl;
     std::cout << "Addr: " << tmp->_addr << " -- " << decimal_var << std::endl;
     std::cout << "Free: " << (tmp->_free == true ? "true" : "false")
               << std::endl;
@@ -60,7 +58,7 @@ void *heap_node::find_lowest_higher_free(std::size_t size) {
   std::size_t actual_lowest = SIZE_MAX;
 
   while (tmp) {
-    if (tmp->_free && tmp->_size > size + HEAP_NODE_SIZE + 2 * SEP_BYTES &&
+    if (tmp->_free && tmp->_size > size + HEAP_NODE_SIZE &&
         tmp->_size < actual_lowest) {
       actual_lowest = tmp->_size;
       addr = tmp->_addr;
@@ -95,11 +93,11 @@ void heap_node::set_free(bool eval) {
 }
 
 void *heap_node::split_node(std::size_t size) {
-  _size -= size + HEAP_NODE_SIZE + 2 * SEP_BYTES;
+  _size -= size + HEAP_NODE_SIZE;
 
   void *addr_node = _addr + _size;
   heap_node *node = static_cast<heap_node *>(addr_node);
-  void *addr_memory = addr_node + HEAP_NODE_SIZE + SEP_BYTES;
+  void *addr_memory = addr_node + HEAP_NODE_SIZE;
   node->init_node(addr_memory, size);
 
   heap_node *next = _next;
