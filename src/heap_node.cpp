@@ -133,6 +133,7 @@ void heap_node::merge_next() {
     next->_next->_previous = this;
   }
 
-  // TODO: with this code we have a free memory block that grows, we need to
-  // modify the state of the heap
+  if (heap.get_highest_free_memory() < _size) {
+    heap.set_highest_free_memory(_size);
+  }
 }
