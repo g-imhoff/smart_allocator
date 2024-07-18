@@ -36,7 +36,7 @@ void heap_node::print_node() {
     ss >> std::hex >> decimal_var;
     std::cout << "Node: " << i << std::endl;
     std::cout << "The node size is : " << HEAP_NODE_SIZE << std::endl;
-    std::cout << "Size: " << tmp->_size <<  std::endl;
+    std::cout << "Size: " << tmp->_size << std::endl;
     std::cout << "Addr: " << tmp->_addr << " -- " << decimal_var << std::endl;
     std::cout << "Free: " << (tmp->_free == true ? "true" : "false")
               << std::endl;
