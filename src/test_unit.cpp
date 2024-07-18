@@ -71,8 +71,35 @@ void allocate_same_size_free() {
   heap_info();
 }
 
+void test_merge_free() {
+  heap_info();
+
+  smart_allocator<int> ptr(sizeof(int) * SIZE);
+
+  if (smart_allocator<int> ptr_temp(sizeof(int) * SIZE); ptr.get_ptr()) {
+    for (int i = 0; i < SIZE; i++) {
+      ptr.get_ptr()[i] = rand();
+    }
+  }
+
+  if (smart_allocator<int> ptr_temp(sizeof(int) * SIZE + 2); ptr.get_ptr()) {
+    for (int i = 0; i < SIZE; i++) {
+      ptr.get_ptr()[i] = rand();
+    }
+  }
+
+  if (smart_allocator<int> ptr_temp(sizeof(int) * SIZE + 4); ptr.get_ptr()) {
+    for (int i = 0; i < SIZE; i++) {
+      ptr.get_ptr()[i] = rand();
+    }
+  }
+
+  heap.get_head()->print_node();
+  heap_info();
+}
+
 int main() {
-  allocate_same_size_free();
+  test_merge_free();
 
   return 0;
 }

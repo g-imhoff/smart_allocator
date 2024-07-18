@@ -63,9 +63,11 @@ void heap_container::heap_free(void *addr) {
   }
 
   if (tmp->get_prev() && tmp->get_prev()->get_free()) {
+    std::cout << "merge prev" << std::endl;
     heap_node *prev = tmp->get_prev();
     prev->merge_next();
   } else if (tmp->get_next() && tmp->get_next()->get_free()) {
+    std::cout << "merge next" << std::endl;
     tmp->merge_next();
   }
 
