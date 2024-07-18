@@ -133,5 +133,6 @@ void heap_node::merge_next() {
     next->_next->_previous = this;
   }
 
-  //TODO: with this code we have a free memory block that grows, we need to modify the state of the heap
+  // TODO: with this code we have a free memory block that grows, we need to
+  // modify the state of the heap
 }
