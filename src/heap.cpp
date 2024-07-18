@@ -6,7 +6,11 @@ heap_container heap;
 void *heap_container::heap_alloc(size_t size) {
   void *addr = NULL;
   if (heap.get_contains_free_memory() &&
-      (addr = heap._head->find_lowest_higher_free(size))) {
+      (addr = heap._head->got_exactly_size_free(size))) {
+    return addr;
+  } else if (heap.get_contains_free_memory() &&
+             (addr = heap._head->find_lowest_higher_free(size))) {
+
     if (heap_node *node = heap._head->get_node(addr)) {
       // TODO: add some possibility of fragmenting the memory
       addr = node->split_node(size);

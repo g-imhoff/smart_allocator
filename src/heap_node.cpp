@@ -107,3 +107,18 @@ void *heap_node::split_node(std::size_t size) {
 
   return addr_memory;
 }
+
+void *heap_node::got_exactly_size_free(std::size_t size) {
+  heap_node *tmp = this;
+
+  while (tmp) {
+    if (tmp->get_free() && tmp->get_size() == size) {
+      tmp->set_free(false);
+      return tmp->get_addr();
+    }
+
+    tmp = tmp->get_next();
+  }
+
+  return NULL;
+}
