@@ -30,7 +30,7 @@ Navigate to the project directory:
 cd smart_allocator
 ```
 
-## Running Tests
+### Running Tests
 To compile and run the tests:
 
 ```bash
